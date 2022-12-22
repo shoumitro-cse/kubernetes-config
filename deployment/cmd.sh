@@ -61,6 +61,9 @@ kubectl expose deployment nginx-deployment --type=NodePort --port=8080
 kubectl expose deployment example --port=8765 --target-port=9376 --name=example-service --type=LoadBalancer
 kubectl expose deployment nginx-deployment --port=80 --target-port=80 --type=LoadBalancer
 
+# service edit
+kubectl -n default edit svc myservice
+
 # generate external IP
 # https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel
 minikube tunnel
@@ -69,6 +72,7 @@ minikube tunnel --cleanup
 # get service list
 kubectl get service
 kubectl get service -l app=nginx
+minikube service -n default list
 
 # dectails view a service
 kubectl describe endpoints  nginx-deployment
@@ -92,7 +96,59 @@ echo $pods
 # replica increase or decrease
 kubectl scale deployment/nginx-deployment --replicas=1
 kubectl scale deployment/nginx-deployment --replicas=3
+kubectl get pods --show-labels
 
-# load balancing
-https://www.youtube.com/watch?v=xCsz9IOt-fs&t=235s
 
+# api server
+kubectl proxy --port=8002
+http://127.0.0.1:8002/
+
+
+# api resoure info (like kind of a ymal file)
+kubectl api-resources
+NAME                              SHORTNAMES   APIVERSION                             NAMESPACED   KIND
+nodes                             no           v1                                     false        Node
+pods                              po           v1                                     true         Pod
+services                          svc          v1                                     true         Service
+deployments                       deploy       apps/v1                                true         Deployment
+replicasets                       rs           apps/v1                                true         ReplicaSet
+
+
+# api version list
+kubectl api-versions
+
+# kubeconfig contains multiple cluster
+kubectl config --help
+
+kubectl config get-contexts
+kubectl config current-context
+kubectl config get-clusters  
+kubectl config view
+
+Available Commands:
+  current-context   Display the current-context
+  delete-cluster    Delete the specified cluster from the kubeconfig
+  delete-context    Delete the specified context from the kubeconfig
+  delete-user       Delete the specified user from the kubeconfig
+  get-clusters      Display clusters defined in the kubeconfig
+  get-contexts      Describe one or many contexts
+  get-users         Display users defined in the kubeconfig
+  rename-context    Rename a context from the kubeconfig file
+  set               Set an individual value in a kubeconfig file
+  set-cluster       Set a cluster entry in kubeconfig
+  set-context       Set a context entry in kubeconfig
+  set-credentials   Set a user entry in kubeconfig
+  unset             Unset an individual value in a kubeconfig file
+  use-context       Set the current-context in a kubeconfig file
+  view              Display merged kubeconfig settings or a specified kubeconfig file
+
+
+# logs pod, rs, deployments
+kubectl logs pod/nginx-deployment-8c64f777-4x9gf
+kubectl logs -f pod/nginx-deployment-8c64f777-997pc # live logs
+
+kubectl logs rs/nginx-deployment-8c64f777
+kubectl logs -f rs/nginx-deployment-8c64f777
+
+kubectl logs  deploy/nginx-deployment
+kubectl logs -f  deploy/nginx-deployment

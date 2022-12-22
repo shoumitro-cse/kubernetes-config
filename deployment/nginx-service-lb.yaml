@@ -7,6 +7,9 @@ metadata:
     app: nginx
     
 spec:
+  # If you want to make sure that connections from a particular client are passed to the same Pod each time
+  # sessionAffinity: ClientIP
+  # sessionAffinity: None # default
   selector:
     app: nginx
   type: LoadBalancer
