@@ -1,0 +1,18 @@
+# https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel
+
+
+minikube tunnel
+
+# The below solution works in my case. First of all, try this command:
+minikube tunnel
+
+# If it's not working for you. follow the below. I restart minikube container.
+docker minikube stop 
+
+#then
+docker minikube start
+
+# After that re-run kubernetes. minikube dashboard After finish execute :
+minikube tunnel
+minikube tunnel --cleanup
+

@@ -1,0 +1,99 @@
+# official install
+https://kubernetes.io/docs/tasks/tools/
+
+# minikube start
+https://minikube.sigs.k8s.io/docs/start/
+
+# Install minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+# Start your cluster
+minikube start
+minikube start --force # for less memory
+
+# Then, shut down the minikube
+minikube stop
+
+kubectl get po -A
+minikube dashboard # start dashboard
+minikube kubectl -- get pods -A # upgrade kubectl
+minikube kubectl version
+
+# You can also make your life easier by adding the following to your shell config(.bashrc):
+alias kubectl="minikube kubectl --"
+
+kubectl create deployment hello-minikube --image=kicbase/echo-server:1.0
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+minikube service hello-minikube
+kubectl port-forward service/hello-minikube 7080:8080
+
+# add node
+https://minikube.sigs.k8s.io/docs/commands/node/
+minikube node add my_node
+minikube node list
+
+docker system prune
+minikube ssh -- docker system prune
+
+
+Kubernetes concepts:
+	Kubernetes is a container management system
+	It runs and manages containerized applications on a cluster
+	What does that really mean?
+
+
+# Behind the scenes of kubectl run. Let’s look at the resources that were created by kubectl run
+# kubectl get all. We should see the following things:
+1. deploy/pingpong (the deployment that we just created)
+2. rs/pingpong-xxxx (a replica set created by the deployment)
+3. po/pingpong-yyyy (a pod created by the replica set)
+
+
+# for deployments
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+kubectl get deployments
+kubectl get rs
+kubectl get pods
+kubectl get pods --show-labels
+kubectl describe deployments
+kubectl scale deployment/nginx-deployment --replicas=10
+kubectl autoscale deployment/nginx-deployment --min=10 --max=15 --cpu-percent=80
+kubectl get deploy
+kubectl get rs
+kubectl get deployment nginx-deployment -o yaml
+
+
+
+A ReplicaSet's purpose is to maintain a stable set of replica Pods running at any given time. 
+As such, it is often used to guarantee the availability of a specified number of identical Pods.
+
+# replica set
+https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+kubectl apply -f frontend.yaml
+kubectl get rs
+kubectl describe rs/frontend
+kubectl get pods
+kubectl get pods frontend-b2zdv -o yaml
+
+
+# Multi-Container Pods in Kubernetes
+https://linchpiner.github.io/k8s-multi-container-pods.html
+https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+kubectl apply -f myapp.yaml
+kubectl get -f myapp.yaml # status
+
+
+# enter a container
+kubectl exec -it "pod-name" -c "container-name" -n "namespace"
+kubectl exec mypod -c ruby-container -it -- bash -il
+kubectl exec mc1_pod -c 1st_container -- /bin/cat /usr/share/nginx/html/index.html
+
+
+# CronJob
+https://kubernetes.io/docs/tasks/job/automated-tasks-with-cron-jobs/
+kubectl create -f https://k8s.io/examples/application/job/cronjob.yaml
+kubectl get cronjob hello
+kubectl get jobs --watch
+kubectl delete cronjob hello
