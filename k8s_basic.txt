@@ -1,0 +1,43 @@
+# https://medium.com/analytics-vidhya/using-minikube-for-local-deplyment-of-single-node-kubernetes-cluster-25bb576d532b
+
+Kubernetes is an open source container orchestration platform that automates many of the manual processes involved in deploying, managing, and scaling containerized applications. It is also known as k8s.
+
+Kubernetes was originally developed and designed by at Google and was open sourced in 2014.
+
+Advantage of Kubernetes :
+
+Orchestrate containers across multiple hosts.
+Control and automate application deployments and updates.
+Mount and add storage to run apps.
+Scale containerized applications and their resources.
+Manage services which guarantees the deployed applications are always running the way you intended them to run.
+Health-check and self-heal your apps with auto-placement, auto-restart, auto-replication, and auto-scaling.
+Kubernetes is significantly more complex than Swarm, and requires more work to deploy. For development work, and smaller container clusters, Docker Swarm presents a simpler choice.
+
+
+
+Master Components :
+API Server
+Kubernetes is an API server which provides all the operation on cluster using the API.Its basically the entry point .
+
+Controller Manager
+This component is responsible for most of the collectors that regulates the state of cluster and performs a task.
+
+Scheduler
+This is one of the key components of Kubernetes master. It is a service in master responsible for distributing the workload. It is responsible for tracking utilization of working load on cluster nodes.
+
+etcd
+
+
+
+Worker Node Components :
+
+Kubelet: Kubelet ensures that all containers in the node are running and are in the healthy state. Its also responsible for communication between master and worker nodes.
+
+Container: Containers are the lowest level of Microservice, placed inside the pod and needs external IP address to view the outside process.
+
+Kube Proxy: It acts as a network proxy and a load balancer. It forwards the request to the correct pods across isolated networks in a cluster.
+
+
+
+
