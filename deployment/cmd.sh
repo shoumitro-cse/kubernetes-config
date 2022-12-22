@@ -14,8 +14,11 @@ minikube service hello-minikube
 kubectl port-forward service/hello-minikube 7080:8080
 
 # enter container
-kubectl exec hello-minikube-7ddcbc9b8b-phnzw -c echo-server -- /bin/ls
-kubectl exec nginx-deployment-8c64f777-6h76x -c mynginx -- /bin/ls
+kubectl exec -it  pod_name -c container_name -- bash
+kubectl exec -it  nginx-deployment-8c64f777-f49z4 -c mynginx -- bash
+
+kubectl exec -it pod_name -- bash
+kubectl exec -it nginx-deployment-8c64f777-6h76x -- bash
 
 # delete deployment
 kubectl delete -n default deployment hello-minikube

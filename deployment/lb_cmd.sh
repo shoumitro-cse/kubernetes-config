@@ -1,7 +1,11 @@
+# load balancing (youtube)
+https://www.youtube.com/watch?v=xCsz9IOt-fs&t=235s
+https://www.youtube.com/watch?v=zCW1TewkoOk
+
+
 # deployments create from yaml file 
 kubectl apply -f deployment/nginx-deployment.yaml
 kubectl apply -f deployment/nginx-service-lb.yaml
-
 
 
 # generate external IP
@@ -16,9 +20,11 @@ kubectl port-forward service/myservice 8001:80 --address=192.168.0.105
 kubectl port-forward service/myservice 80:80 --address=192.168.0.105 # Error listen tcp4 192.168.0.105:80: bind: permission denied
 
 
+# Enter pod container
+kubectl exec -it pod_name -- bash
+kubectl exec -it nginx-deployment-8c64f777-6h76x -- bash
+kubectl exec -it  nginx-deployment-8c64f777-f49z4 -c mynginx -- bash
 
-# load balancing
-https://www.youtube.com/watch?v=xCsz9IOt-fs&t=235s
 
 # create service
 # https://kubernetes.io/docs/concepts/services-networking/service/
@@ -51,3 +57,6 @@ kubectl describe ing nginx-ing-test
 https://github.com/thesandlord/nginx-kubernetes-lb
 https://github.com/hpcloud/kubernetes-service-loadbalancer
 https://github.com/TuxInvader/nginx-lb-operator
+
+
+
