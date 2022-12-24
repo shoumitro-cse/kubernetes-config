@@ -1,3 +1,8 @@
+# minikube online 
+https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/
+
+
+
 # https://medium.com/analytics-vidhya/using-minikube-for-local-deplyment-of-single-node-kubernetes-cluster-25bb576d532b
 
 Using Minikube for Local Deplyment of single node Kubernetes cluster.
