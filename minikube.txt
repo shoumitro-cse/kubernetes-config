@@ -31,6 +31,12 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 minikube start
 minikube start --force # for less memory
 
+# shell
+minikube ssh
+
+# open a service in browser 
+minikube service my_service_name
+ 
 # Then, shut down the minikube
 minikube stop
 

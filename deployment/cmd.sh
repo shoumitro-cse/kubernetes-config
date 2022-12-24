@@ -34,7 +34,7 @@ minikube service nginx-deployment -n <namespace>
 minikube stop
 
 
-******************** using yaml *********************************
+# ******************** using yaml *********************************
 # deployments create from yaml file 
 kubectl apply -f deployment/nginx-deployment.yaml
 kubectl apply -f deployment/nginx-service-lb.yaml
