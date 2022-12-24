@@ -39,6 +39,49 @@ minikube stop
 kubectl apply -f deployment/nginx-deployment.yaml
 kubectl apply -f deployment/nginx-service-lb.yaml
 
+# edit and rollout
+kubectl rollout status deployment/nginx-deployment
+kubectl edit deployment/nginx-deployment
+
+# show 2 back history
+kubectl rollout history deployment/nginx-deployment # list all  
+kubectl rollout history deployment/nginx-deployment --revision=2
+
+# specify theCHANGE-CAUSE message
+kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="volume is changed"
+
+# roll back a specific or recent
+deployment.apps/nginx-deployment rolled back
+kubectl rollout undo deployment/nginx-deployment --to-revision=7
+
+# https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#autoscale
+# pod autoscale(incr/descr) base on cpu percent
+# Assuming horizontal Pod autoscaling is enabled in your cluster, you can set up an autoscaler 
+# for your Deployment and choose the minimum and maximum number of Pods you want to run based 
+# on the CPU utilization of your existing Pods.
+kubectl autoscale deployment/nginx-deployment --min=5 --max=10 --cpu-percent=10
+kubectl get hpa # to show Horizontal Pod Scaler.
+kubectl delete hpa NAME-OF-HPA.
+kubectl delete hpa nginx-deployment # delete autoscale
+kubectl scale deployment/nginx-deployment --replicas=2
+
+# replica increase or decrease
+kubectl scale deployment/nginx-deployment --replicas=1
+kubectl scale deployment/nginx-deployment --replicas=3
+kubectl get pods --show-labels
+
+# https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+# Specify compute resource requirements (CPU, memory) for any resource that defines a pod template
+kubectl set resources --help
+kubectl set resources deployment/nginx-deployment -c=mynginx1 --limits=cpu=200m,memory=512Mi
+kubectl set resources deployment/nginx-deployment -c=mynginx1 --limits='' #dafault
+
+kubectl create quota dev-quota --hard services=10,cpu=1300,memory=1.5Gi
+kubectl get resourcequota
+kubectl delete resourcequota dev-quota
+
+# get yaml output
+kubectl get deployment nginx-deployment -o yaml
 
 # get deployment list
 kubectl get deployments
@@ -96,11 +139,6 @@ kubectl delete rs kubernetes-node-server-replicaset
 pods=$(kubectl get pods --selector=app=nginx --output=jsonpath={.items..metadata.name})
 echo $pods
 
-# replica increase or decrease
-kubectl scale deployment/nginx-deployment --replicas=1
-kubectl scale deployment/nginx-deployment --replicas=3
-kubectl get pods --show-labels
-
 
 # api server
 kubectl proxy --port=8002
@@ -155,3 +193,4 @@ kubectl logs -f rs/nginx-deployment-8c64f777
 
 kubectl logs  deploy/nginx-deployment
 kubectl logs -f  deploy/nginx-deployment
+

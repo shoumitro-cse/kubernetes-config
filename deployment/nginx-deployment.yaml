@@ -7,7 +7,7 @@ metadata:
     app: nginx
     
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -16,8 +16,32 @@ spec:
       labels:
         app: nginx
     spec:
+
+      volumes:
+        - name: my-volume
+          hostPath:
+            path: /mnt/data
+
       containers:
-      - name: mynginx
+      - name: mynginx1
         image: nginx:latest
+        # resources:
+        #   requests:
+        #     memory: "64Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 80
+        volumeMounts:
+          - name: my-volume
+            mountPath: "/nginx/data"
+
+      # - name: mynginx2
+        # image: nginx:latest
+        # ports:
+        # - containerPort: 90
+        # volumeMounts:
+          # - name: my-volume
+            # mountPath: "/nginx2/data"
