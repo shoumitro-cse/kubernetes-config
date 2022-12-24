@@ -1,0 +1,17 @@
+
+# Work loads (rs, deploy, pod etc)
+https://kubernetes.io/docs/concepts/workloads/controllers/
+
+
+# Volume
+https://kubernetes.io/docs/concepts/storage/
+
+
+# Pods
+https://kubernetes.io/docs/concepts/workloads/pods/
+
+
+
+# kubectl cmd sheet 
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
