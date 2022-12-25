@@ -4,19 +4,19 @@ kind: ReplicaSet
 metadata:
   name: nginx-server-replica
   labels:
-    app: nginx-gp
-    tier: nginx-server
+    app: nginx-server-replica
+    tier: nginx-server-replica
 
 spec:
   # modify replicas according to your case
   replicas: 3
   selector:
     matchLabels:
-      tier: nginx-server
+      tier: nginx-server-replica
   template:
     metadata:
       labels:
-        tier: nginx-server
+        tier: nginx-server-replica
     spec:
       containers:
       - name: nginx-server-container

@@ -4,7 +4,7 @@ kind: Pod
 metadata:
   name: pod1
   labels:
-    tier: nginx-server
+    tier: nginx-server-replica
 spec:
   containers:
   - name: nginx1-container
