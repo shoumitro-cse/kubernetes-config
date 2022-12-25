@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: nginx-server-replica
+  labels:
+    app: nginx-gp
+    tier: nginx-server
+
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: nginx-server
+  template:
+    metadata:
+      labels:
+        tier: nginx-server
+    spec:
+      containers:
+      - name: nginx-server-container
+        image: nginx:latest
+        ports:
+         - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

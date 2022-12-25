@@ -4,6 +4,7 @@
 # get node info like cpu, memory
 kubectl describe node minikube
 
+# it is used to specify how many resurce like cpu, memory we will use for a spacific namespace
 kubectl create quota dev-quota --hard services=10,cpu=1300,memory=1.5Gi
 kubectl get resourcequota
 kubectl describe dev-quota

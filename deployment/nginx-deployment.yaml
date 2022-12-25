@@ -39,9 +39,9 @@ spec:
             mountPath: "/nginx/data"
 
       # - name: mynginx2
-        # image: nginx:latest
-        # ports:
-        # - containerPort: 90
-        # volumeMounts:
-          # - name: my-volume
-            # mountPath: "/nginx2/data"
+      #   image: nginx:latest
+      #   ports:
+      #   - containerPort: 90
+      #   volumeMounts:
+      #     - name: my-volume
+      #       mountPath: "/nginx2/data"
