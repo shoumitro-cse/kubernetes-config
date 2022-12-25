@@ -1,26 +1,59 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: es-pv-claim
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "standard"
+spec:
+  storageClassName: standard
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: es-config-map
+data:
+  # property-like keys; each key maps to a simple value
+  player_initial_lives: "3"
+
+---
+# echo -n "username" | base64
+# echo -n "password" | base64
+apiVersion: v1
+kind: Secret
+metadata:
+  name: es-secret-dir
+type: Opaque
+data:
+  username: dXNlcm5hbWU=
+  password: cGFzc3dvcmQ=
+  
+  
+---
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: elastic
-
 spec:
   selector:
     matchLabels:
       app: elastic
-      
   template:
     metadata:
       labels:
         app: elastic
-        
     spec:
       containers:
       - image: elastic:latest
         name: elastic-container
         ports:
         - containerPort: 9200
-        
         volumeMounts:
         - name: es-persistent-storage
           mountPath: /var/lib/data
@@ -28,7 +61,6 @@ spec:
           mountPath: /var/lib/secret
         - name: es-config-dir
           mountPath: /var/lib/config
-          
       volumes:
       - name: es-persistent-storage
         persistentVolumeClaim:
@@ -39,4 +71,3 @@ spec:
       - name: es-config-dir
         configMap:
           name: es-config-map
-          

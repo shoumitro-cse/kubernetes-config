@@ -18,10 +18,13 @@ kubectl delete pvc www-web-0  www-web-1 www-web-2
 # for Persistent Volume
 kubectl get pv
 kubectl describe pv pv-name
-kubectl describe pv example-pv test-volume
+kubectl describe pv pv-name example-pv test-volume
 
 # to list all api resource
 kubectl api-resources
 
 # show all storage class
 kubectl get sc
+
+
+echo -n "username" | base64

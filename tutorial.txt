@@ -3,13 +3,16 @@
 https://kubernetes.io/docs/concepts/workloads/controllers/
 
 
-# Volume
+# Volume, storage class
 https://kubernetes.io/docs/concepts/storage/
 
 
 # Pods
 https://kubernetes.io/docs/concepts/workloads/pods/
 
+
+# Secrets, ConfigMaps
+https://kubernetes.io/docs/concepts/configuration/
 
 
 # kubectl cmd sheet 
