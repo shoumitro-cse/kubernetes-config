@@ -18,3 +18,7 @@ https://kubernetes.io/docs/concepts/configuration/
 # kubectl cmd sheet 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
+
+
+# kubernetes example git repo
+https://github.com/kubernetes/examples.git
