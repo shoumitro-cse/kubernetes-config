@@ -22,3 +22,7 @@ https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
 
 # kubernetes example git repo
 https://github.com/kubernetes/examples.git
+
+
+# What is the difference between a replica set and replication controller?
+https://medium.com/avmconsulting-blog/replication-controller-replica-sets-in-kubernetes-820f3cec7170
