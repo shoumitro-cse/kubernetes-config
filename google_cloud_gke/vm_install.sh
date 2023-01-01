@@ -9,6 +9,7 @@ gcloud compute ssh --zone "us-west4-b" "worker3"  --project "maximal-arcade-3729
 
 
 
+kubeadm token create --print-join-command
 
 kubectl get componentstatuses
 kubectl get pods --all-namespaces --watch
