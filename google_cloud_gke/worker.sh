@@ -68,7 +68,14 @@ sudo systemctl restart docker
 
 
 # for worker node join cmd
-# sudo rm /etc/containerd/config.toml
+sudo rm /etc/containerd/config.toml
 sudo systemctl restart containerd
-kubeadm join 10.182.0.2:6443 --token 3rtb5x.w0csuo1rhtlfn7e6 \
-        --discovery-token-ca-cert-hash sha256:980c89e3c16cdf4bcc7cacf2a3e951f3133e00b530249067e6f23626d9674cf1
+kubeadm join 10.138.0.6:6443 --token o6r0ps.owwieceqclx0idkr \
+        --discovery-token-ca-cert-hash sha256:0905141a53038a973f1d86c8fac340e17bfd06d524fbc3a12230fe194dfc34e4 
+        
+        
+# kubeadm reset        
+sudo rm /etc/containerd/config.toml
+sudo systemctl restart containerd
+kubeadm join 10.138.0.15:6443 --token ifunaq.yks15abpv5vrg1yz \
+        --discovery-token-ca-cert-hash sha256:b0b22d3aaf3ee7ee789638d30a366765cf0c0aa6da1ee8bff04f7b1b61fc2cec
