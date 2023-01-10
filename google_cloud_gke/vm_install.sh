@@ -1,3 +1,5 @@
+# for ubuntu 20.04
+
 # vm instance
 # https://console.cloud.google.com/compute/instances?authuser=0&project=maximal-arcade-372908
 

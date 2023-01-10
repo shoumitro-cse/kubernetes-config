@@ -1,3 +1,5 @@
+# for ubuntu 20.04
+
 # install kubelet kubeadm kubectl
 sudo apt update
 sudo apt -y full-upgrade
@@ -70,8 +72,8 @@ sudo systemctl restart docker
 # for worker node join cmd
 sudo rm /etc/containerd/config.toml
 sudo systemctl restart containerd
-kubeadm join 10.138.0.6:6443 --token o6r0ps.owwieceqclx0idkr \
-        --discovery-token-ca-cert-hash sha256:0905141a53038a973f1d86c8fac340e17bfd06d524fbc3a12230fe194dfc34e4 
+kubeadm join 10.138.0.16:6443 --token u3g52f.b96xduc3l705lcfi \
+        --discovery-token-ca-cert-hash sha256:c2cbc37d6726be1f778ecc237d9669414f67600fa129225adc856a1d9e279ef6
         
         
 # kubeadm reset        

@@ -1,3 +1,5 @@
+# for ubuntu 20.04
+
 # install kubelet kubeadm kubectl
 sudo apt update
 sudo apt -y full-upgrade
@@ -90,9 +92,9 @@ kubectl cluster-info
 
 # flannel network setup
 # https://github.com/flannel-io/flannel#deploying-flannel-manually
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16  # this code is import for this netwok
+# sudo kubeadm init --pod-network-cidr=10.244.0.0/16  # this code is import for this netwok
 kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.20.2/Documentation/kube-flannel.yml
-kubectl delete -f https://raw.githubusercontent.com/flannel-io/flannel/v0.20.2/Documentation/kube-flannel.yml
+# kubectl delete -f https://raw.githubusercontent.com/flannel-io/flannel/v0.20.2/Documentation/kube-flannel.yml
 kubectl get ns
 kubectl get pods -n kube-flannel
 
@@ -104,9 +106,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=/etc/kubernetes/kubelet.conf
 
 
-
-kubeadm join 10.138.0.6:6443 --token o6r0ps.owwieceqclx0idkr \
-        --discovery-token-ca-cert-hash sha256:0905141a53038a973f1d86c8fac340e17bfd06d524fbc3a12230fe194dfc34e4 
+kubeadm join 10.138.0.16:6443 --token u3g52f.b96xduc3l705lcfi \
+        --discovery-token-ca-cert-hash sha256:c2cbc37d6726be1f778ecc237d9669414f67600fa129225adc856a1d9e279ef6
         
         
-ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAR3TmmkAziaFUvQ6f1NJEVaZWULgAWSREflZxWLH7+V3pFQ6b+hf4FjqCfBz/n3bChU46qcc+PCDLGMvsan6lE= google-ssh {"userName":"meektecit@gmail.com","expireOn":"2023-01-09T09:48:14+0000"}
