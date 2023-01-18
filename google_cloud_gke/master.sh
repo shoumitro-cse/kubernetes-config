@@ -1,6 +1,7 @@
 # for ubuntu 20.04
 
 # install kubelet kubeadm kubectl
+sudo su
 sudo apt update
 sudo apt -y full-upgrade
 sudo apt -y install curl apt-transport-https
@@ -41,7 +42,7 @@ sudo apt install apt-transport-https ca-certificates curl software-properties-co
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 apt-cache policy docker-ce
-sudo apt install docker-ce
+sudo apt -y install docker-ce
 # sudo systemctl status docker
 
 
@@ -77,6 +78,7 @@ sudo systemctl restart kubelet
 ### cluster setup ###
 # https://www.tracston.com/index.php/forum/topic/kubadm-init-error-cri-container-runtime-is-not-running/
 # sudo kubeadm reset
+# sudo su
 sudo rm /etc/containerd/config.toml
 sudo systemctl restart containerd
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16 # pod-network for flannel
@@ -106,7 +108,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=/etc/kubernetes/kubelet.conf
 
 
-kubeadm join 10.138.0.16:6443 --token u3g52f.b96xduc3l705lcfi \
-        --discovery-token-ca-cert-hash sha256:c2cbc37d6726be1f778ecc237d9669414f67600fa129225adc856a1d9e279ef6
+kubeadm token create --print-join-command
+kubeadm join 10.138.0.16:6443 --token gzi6ri.ym56k9e2z4hs8dl8 --discovery-token-ca-cert-hash sha256:c2cbc37d6726be1f778ecc237d9669414f67600fa129225adc856a1d9e279ef6 
+
+kubectl get nodes
         
         

@@ -1,6 +1,7 @@
 # for ubuntu 20.04
 
 # install kubelet kubeadm kubectl
+sudo su
 sudo apt update
 sudo apt -y full-upgrade
 sudo apt -y install curl apt-transport-https
@@ -41,7 +42,7 @@ sudo apt install apt-transport-https ca-certificates curl software-properties-co
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 apt-cache policy docker-ce
-sudo apt install docker-ce
+sudo apt -y install docker-ce
 # sudo systemctl status docker
 
 
@@ -70,10 +71,10 @@ sudo systemctl restart docker
 
 
 # for worker node join cmd
+# sudo su
 sudo rm /etc/containerd/config.toml
 sudo systemctl restart containerd
-kubeadm join 10.138.0.16:6443 --token u3g52f.b96xduc3l705lcfi \
-        --discovery-token-ca-cert-hash sha256:c2cbc37d6726be1f778ecc237d9669414f67600fa129225adc856a1d9e279ef6
+kubeadm join 10.138.0.16:6443 --token gzi6ri.ym56k9e2z4hs8dl8 --discovery-token-ca-cert-hash sha256:c2cbc37d6726be1f778ecc237d9669414f67600fa129225adc856a1d9e279ef6 
         
         
 # kubeadm reset        
