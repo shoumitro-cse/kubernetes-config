@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: feedback-service
+  labels:
+    app: feedback
+    
+spec:
+  # If you want to make sure that connections from a particular client are passed to the same Pod each time
+  # sessionAffinity: ClientIP # track using client IP address
+  # sessionAffinity: None # default
+  selector:
+    app: feedback
+  type: LoadBalancer # default round robin
+  #externalIPs:
+  #- 192.168.0.105
+  ports:
+     - port: 80 # outside port
+       targetPort: 90 # container port
+       nodePort: 30000
+       

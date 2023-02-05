@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: fb-database-deployment
+  labels:
+    app: fb-database
+    
+spec:
+  replicas: 2
+  
+  selector:
+    matchLabels:
+      app: fb-database
+      
+  template:
+    metadata:
+      labels:
+        app: fb-database
+    spec:
+      containers:
+      - name: fb-database-container
+        image: shoumitro26/feedback_db:latest 
+        ports:
+        - containerPort: 5432
+      imagePullSecrets:
+      - name: regcred
+        

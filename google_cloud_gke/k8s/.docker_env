@@ -1,0 +1,39 @@
+SECRET_KEY='django-insecure-xott)qcfugtc8b%h_p39ui6bs#6t+#o4o=bj6liqf30&=ouy)d'
+AWS_ACCESS_KEY_ID = 'AKIAX5SV76KJJ3RKDOM2'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_PRODUCTION_BUCKET_NAME = 'meektecbacekend'
+AWS_STORAGE_DEVELOPMENT_BUCKET_NAME = 'meektec-development'
+
+
+DB_NAME = 'feedback_testing'
+DB_USER_NAME = 'postgres'
+DB_PASSWORD = '1234'
+#DB_HOST = 'host.docker.internal'
+DB_HOST='35.212.152.136'
+DB_PORT = '5432'
+
+
+EMAIL_ACCOUNT='kamrul26hasan2022@gmail.com'
+EMAIL_PASSWORD = 'jznwzmqylfzijtps'
+
+
+EMAIL_HOST='email-smtp.us-east-2.amazonaws.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER="AKIAX5SV76KJFTRM45XR"
+EMAIL_HOST_PASSWORD="BKFBPYMIAtfrw5lx14Dp7DRTkgqKPOvT64Z+MHRasg6d"
+EMAIL_USE_TLS=True
+DEFAULT_FROM_EMAIL="signup@als-social.com"
+EMAIL_HOST = 'smtppro.zoho.com'
+# APPS_BASE_URL = 'http://localhost:7000'
+APPS_BASE_URL = ''
+BD_SMS_API_KEY='Whh7BiZmPM9ZE97dim3RZMIyMjttf2RGfHaj132c'
+ABROAD_SMS_API_KEY = 'API1113840116041'
+ABROAD_SMS_API_PASSWORD = '6SrgwZwhoL'
+
+MEDIA_URL='/media_testing/'
+DB_ROUTER=True
+REDIS_HOST='35.212.152.136'
+DEVELOPMENT_SERVER=False
+DEBUG=True
+IS_SECURE=False
+

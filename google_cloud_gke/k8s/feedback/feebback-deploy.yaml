@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: feedback-deployment
+  labels:
+    app: feedback
+    
+spec:
+  replicas: 2
+  
+  selector:
+    matchLabels:
+      app: feedback
+      
+  template:
+    metadata:
+      labels:
+        app: feedback
+    spec:
+      containers:
+      - name: feedback-social
+        image: shoumitro26/social_backend_feedback:latest 
+        ports:
+        - containerPort: 90
+      imagePullSecrets:
+      - name: regcred
+        

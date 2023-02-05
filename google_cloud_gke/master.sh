@@ -38,7 +38,7 @@ sudo sysctl --system
 ################# docker install start ###################
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
 sudo apt update
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 apt-cache policy docker-ce
@@ -99,7 +99,7 @@ kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/v0.20.2/Do
 # kubectl delete -f https://raw.githubusercontent.com/flannel-io/flannel/v0.20.2/Documentation/kube-flannel.yml
 kubectl get ns
 kubectl get pods -n kube-flannel
-
+kubectl get pods -A -o wide
 
 # To start using your cluster, you need to run the following as a regular user: 
 mkdir -p $HOME/.kube
@@ -109,8 +109,17 @@ export KUBECONFIG=/etc/kubernetes/kubelet.conf
 
 
 kubeadm token create --print-join-command
-kubeadm join 10.138.0.16:6443 --token gzi6ri.ym56k9e2z4hs8dl8 --discovery-token-ca-cert-hash sha256:c2cbc37d6726be1f778ecc237d9669414f67600fa129225adc856a1d9e279ef6 
+kubeadm join 10.138.0.2:6443 --token hvdbqh.rclh718nb07iwhc7 \
+	--discovery-token-ca-cert-hash sha256:d687f42575a3a20c206af9acda0309a21e39fe5e5d85ae3e172158b437d323a1 
 
 kubectl get nodes
         
         
+# delete node from master(cluster) 
+# https://stackoverflow.com/questions/35757620/how-to-gracefully-remove-a-node-from-kubernetes
+kubectl drain feedback-testing --ignore-daemonsets --delete-local-data
+kubectl delete node feedback-testing
+get pods -o wide
+get pods -A -o wide
+
+
