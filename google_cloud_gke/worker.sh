@@ -74,7 +74,9 @@ sudo systemctl restart docker
 # sudo su
 sudo rm /etc/containerd/config.toml
 sudo systemctl restart containerd
-kubeadm join 10.138.0.16:6443 --token gzi6ri.ym56k9e2z4hs8dl8 --discovery-token-ca-cert-hash sha256:c2cbc37d6726be1f778ecc237d9669414f67600fa129225adc856a1d9e279ef6 
+kubeadm join 10.138.0.9:6443 --token f127ku.2ve56azhz5fvmztp \
+	--discovery-token-ca-cert-hash sha256:d701237b58e03f155a902a63078ad56bfce2e1b1d2fe700d535771aabb5f3874 
+
         
         
 # kubeadm reset        

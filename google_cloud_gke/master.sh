@@ -109,8 +109,10 @@ export KUBECONFIG=/etc/kubernetes/kubelet.conf
 
 
 kubeadm token create --print-join-command
-kubeadm join 10.138.0.2:6443 --token hvdbqh.rclh718nb07iwhc7 \
-	--discovery-token-ca-cert-hash sha256:d687f42575a3a20c206af9acda0309a21e39fe5e5d85ae3e172158b437d323a1 
+kubeadm join 10.138.0.9:6443 --token f127ku.2ve56azhz5fvmztp \
+	--discovery-token-ca-cert-hash sha256:d701237b58e03f155a902a63078ad56bfce2e1b1d2fe700d535771aabb5f3874 
+
+
 
 kubectl get nodes
         
